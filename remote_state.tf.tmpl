@@ -1,0 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket         = "mostperfect-tf-state"
+    dynamodb_table = "mostperfect-tf-state-locks"
+    encrypt        = true
+    key            = "{{STATE_IDENTIFIER}}"
+    region         = "us-east-1"
+  }
+}
+
+variable "env_name" {
+  default = "{{ENV_NAME}}"
+}

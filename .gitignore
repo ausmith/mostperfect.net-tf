@@ -1,0 +1,12 @@
+# Compiled files
+*.tfstate
+*.tfstate.backup
+
+# Module directory
+.terraform/
+
+# Ignore result of "template" file
+remote_state.tf
+
+# Editor
+*.swp

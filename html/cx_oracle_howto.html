@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>
+Almost 2 months ago, I started on a project that required the use of Python and access to an Oracle database. It took me multiple days in a row to finally get it up and running so that I could actually make progress on the project, but once I did, I thought nothing of finally getting it to work. However, I was recently approached by another person at work who had to use the cx_Oracle package to access an Oracle DB through Python, and realized the value of actually putting together a post about the steps required.
+</p>
+
+<p>
+First off, it is really easy to get it running on Linux. I mean super easy to get Python and cx_Oracle up and running. Secondly, I have an XP machine at work, so no guarantees that this will work with all other Windows Operating Systems until I get to test it on one (not possible till about September at the earliest, I'll put a todo item in my calendar to try to remember to do it).
+</p>
+
+<p>
+Alright, down to the nitty-gritty of it. You first need to install a recent, if not the latest, version of Python, if you don't already have it of course. When I was installing it on my work computer, that was <a href="http://python.org/download/releases/2.6.5/" target="_blank">Python 2.6.5</a>. Now that would be Python 2.7, but since Python is intentionally backwards compatible, it SHOULDN'T matter. For installing Python, be sure to follow one of the many Python install guides available on the web, but the quick run-down of the install process is:
+<ol>
+	<li>Install Python.</li>
+	<li>Edit your environment variables to add the Python directory to your PATH variable and create a PYTHON variable. I will cover editing/creating Environment Variables with the later part of this guide because you will have to do it again for cx_Oracle.</li>
+	<li>Code in Python (you can use an IDE like Eclipse, or a regular text editor like Notepad++).</li>
+</ol>
+Next, run the <a href="http://cx-oracle.sourceforge.net/" target="_blank">cx_Oracle .msi installer</a> for your particular Windows install. Now that was the easy part.
+</p>
+
+<p>
+Next up is the part that most people seem to miss, having an Oracle client on your local machine. Oracle suggests the use of the <a href="http://www.oracle.com/technology/tech/oci/instantclient/index.html" target="_blank">Oracle Instant Client</a> (<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html">updated link</a> thanks to Tim in the comments), and that's what I used this time. Oracle's instructions seem to have improved since I first installed the Oracle Instant Client, but that doesn't mean they are easy to follow.
+<ol>
+	<li>Go download, and unzip, the Oracle Instant Client from <a href="http://www.oracle.com/technology/tech/oci/instantclient/index.html" target="_blank">here</a>.</li>
+	<li>Put it in a place on the C:\ drive that is easy to find/access later (it's a drag and drop procedure for getting the files there, no installer). My suggestion is to create a directory called Oracle, and place the instantclient directory in there. This way, my path to the Instant Client directory reads "C:\Oracle\instantclient".</li>
+	<li>Add this guy to your PATH Environment Variable. You can get to the Environment Variables by right clicking My Computer, select Properties, go to the Advanced tab, click the button that says "Environment Variables", and now we're here. From the Python install, your PATH variable (in the user variables section, not the system variables) should already exist from you creating it as "C:\Pythonxx". Now, add that directory location from step 2 so that the PATH variable reads similarly to mine, which is "C:\Oracle\instantclient;C:\Python26".</li>
+	<li>Now you are going to need a tnsnames.ora file. For those of you that don't know what that is, read <a href="http://www.orafaq.com/wiki/Tnsnames.ora" target="_blank">here</a>. The company I work for fortunately provided me with one, so I didn't have to make it from scratch, but basically they contain your connection strings to the different databases you are going to be accessing. I saved mine to "C:\Oracle\network\admin" just for easy memory (and because that's where someone else's was when I asked). I hope you didn't close the Environment Variables screen, you're going to need it again.</li>
+	<li>Lastly, you need to add the TNS_ADMIN variable with step 4's path in it.</li>
+</ol>
+You have now installed cx_Oracle successfully. To really test it, you can open up a Python command prompt and run the following lines of code to test it (case sensitive).
+<ul>
+	<li>import cx_Oracle</li>
+	<li>db_conn = cx_Oracle.connect("user/pass@tnsname.world")</li>
+</ul>
+If either of those steps went wrong, double check the steps. If you still don't know, comment on the post, or email me (my email is lying around somewhere on this site), and I'll do my best to help you. There are also many forums and forum threads scattered around that have tried to explain these points as well, but I found them to be inadequate.
+</p>
+
+<p>
+Lastly, Google is your friend for finding out about the different functions available in cx_Oracle, and the <a href="http://cx-oracle.sourceforge.net/html/index.html" target="_blank">documentation</a> isn't terrible for this either.
+</p>
+</body>
+</html>
