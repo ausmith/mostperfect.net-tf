@@ -25,6 +25,15 @@ POLICY
   }
 }
 
+resource "aws_s3_bucket" "mostperfect_root_bucket" {
+  bucket = "mostperfect.net"
+  acl    = "public-read"
+
+  website {
+    redirect_all_requests_to = "http://www.mostperfect.net"
+  }
+}
+
 resource "aws_s3_bucket_object" "index_html" {
   bucket       = "${aws_s3_bucket.mostperfect_bucket.id}"
   key          = "index.html"
